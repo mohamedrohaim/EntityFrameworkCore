@@ -2,6 +2,7 @@
 using EFCore.Models;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace EFCore
@@ -11,13 +12,23 @@ namespace EFCore
         static void Main(string[] args)
         {
 
-          var _contex = new EFCoreContext();
+            var _contex = new EFCoreContext();
 
-            var Industry = _contex.Stocks.Select(m => new {m.Industry}).Distinct().ToList();
-            foreach(var industry in Industry)
+            var stocks = GetData(1,20);
+            foreach (var item in stocks)
             {
-                Console.WriteLine(industry.Industry);
+                Console.WriteLine(item.Id);
             }
+
+        }
+
+        public static List<Stock> GetData(int pageNumber,int PageSize){
+            var _contex = new EFCoreContext();
+            
+            var stocks = _contex.Stocks.Skip((pageNumber-1)*PageSize).Take(PageSize).ToList();
+            return stocks;
+
+
 
         }
     }
