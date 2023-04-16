@@ -13,13 +13,14 @@ namespace EFCore
 
           var _contex = new EFCoreContext();
 
-           var stocksAverage = _contex.Stocks.Average(x => x.Id);
-            var stockscount= _contex.Stocks.Count(M=>M.Id>=500);
-            var stocksSum = _contex.Stocks.Count();
-            Console.WriteLine(stocksSum);
-
-          //  foreach(var stock in stocks)
-            //   Console.WriteLine($"ID: {stock.Id} : {stock.Name}");
+           var Maxstock = _contex.Stocks.Max(x => x.Id);
+           var MaxByName= _contex.Stocks.Max(x => x.Name);
+           var MinByName= _contex.Stocks.Min(x => x.Name);
+           var Minstock = _contex.Stocks.Min(x => x.Id);
+            Console.WriteLine(MaxByName);
+            Console.WriteLine(MinByName);
+            Console.WriteLine(Maxstock);
+            Console.WriteLine(Minstock);
             
 
         }
