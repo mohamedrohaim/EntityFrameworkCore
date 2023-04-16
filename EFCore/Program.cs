@@ -13,15 +13,11 @@ namespace EFCore
 
           var _contex = new EFCoreContext();
 
-           var Maxstock = _contex.Stocks.Max(x => x.Id);
-           var MaxByName= _contex.Stocks.Max(x => x.Name);
-           var MinByName= _contex.Stocks.Min(x => x.Name);
-           var Minstock = _contex.Stocks.Min(x => x.Id);
-            Console.WriteLine(MaxByName);
-            Console.WriteLine(MinByName);
-            Console.WriteLine(Maxstock);
-            Console.WriteLine(Minstock);
-            
+            var Industry = _contex.Stocks.Select(m => new {m.Industry}).Distinct().ToList();
+            foreach(var industry in Industry)
+            {
+                Console.WriteLine(industry.Industry);
+            }
 
         }
     }
