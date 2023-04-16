@@ -1,5 +1,7 @@
-﻿using EFCore.Models;
+﻿using EFCore.Context;
+using EFCore.Models;
 using System;
+using System.Linq;
 
 namespace EFCore
 {
@@ -8,30 +10,15 @@ namespace EFCore
         static void Main(string[] args)
         {
 
-            var _contex = new ApplicationDbContext();
-            //var Blog = new Blog()
-            //{
-            //    Url = "test.com",
-            //    Rating= 5,
-            //};
-            //_contex.Blogs.Add(Blog);
+          var _contex = new EFCoreContext();
 
-            var author=new Author() { 
-            FirstName="mohamed",
-            LastName="rohiem"
-            };
-            // _contex.Authors.Add(author);
+            var stoks = _contex.Stocks.Where(m => m.Id >= 500 && m.Name.StartsWith("Z"));
 
-            // var auth = _contex.Authors.Find(2);
-            var category = new Categoty()
+            foreach(var stok in stoks)
             {
-                
-                Name = "Science"
-            };
-           // _contex.Categoties.Add(category);
-          //  _contex.SaveChanges();
+                Console.WriteLine($"ID: {stok.Id} : {stok.Name}");
+            }
 
-           Console.WriteLine();
         }
     }
 }

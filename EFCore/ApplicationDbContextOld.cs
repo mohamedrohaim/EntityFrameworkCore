@@ -9,15 +9,15 @@ using System.Reflection.Metadata;
 
 namespace EFCore
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContextOld //: DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-           => options.UseSqlServer("Server=.;Database=EFCore;Integrated Security=true");
+       /* protected override void OnConfiguring(DbContextOptionsBuilder options)
+           => options.UseSqlServer("Server=.;Database=EFCore;Integrated Security=true");*/
 
 
         // fluent api way
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+       // protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
             #region MyRegion
             // * add to database this way similar to use DbSet<table>tableName
             // modelBuilder.Entity<AuditEntry>();
@@ -123,20 +123,28 @@ namespace EFCore
 
 
             #endregion
-        }
-        /* public DbSet<Blog> Blogs { get; set; }
-          //public DbSet<BlogImage> BlogImages { get; set; }
-          /*public DbSet<Blog> Blogs   { get; set; } 
-          public DbSet<Author> Authors   { get; set; } 
-          public DbSet<Categoty> Categoties  { get; set; }        
-          //public DbSet<Post> Posts   { get; set; } 
 
-         */
+
+        //}
+       // public DbSet<Blog> Blogs { get; set; }
+        //public DbSet<Post> Posts{ get; set; }
+
+
+        #region DpSets
+        /* public DbSet<Blog> Blogs { get; set; }
+        //public DbSet<BlogImage> BlogImages { get; set; }
+        /*public DbSet<Blog> Blogs   { get; set; } 
+        public DbSet<Author> Authors   { get; set; } 
+        public DbSet<Categoty> Categoties  { get; set; }        
+        //public DbSet<Post> Posts   { get; set; } 
+
+       */
 
         //public DbSet<Car> Cars { get; set; }
         //  public DbSet<Post> posts { get; set; }
         //public DbSet<Tag> Tags { get; set; } 
 
+        #endregion
 
 
 
@@ -161,7 +169,7 @@ namespace EFCore
 
 
 
-
+/*
     public class Post
     {
         public int Id { get; set; }
@@ -172,12 +180,12 @@ namespace EFCore
         //public ICollection<Tag> Tags { get; set; }
 
         //[ForeignKey(nameof(BlogId))]
-        /* add this line if you used third table */
+         add this line if you used third table 
 
-        public List<PostTag> PostTags { get; set; }
+        //public List<PostTag> PostTags { get; set; }
          
 
-    }
+    }*/
 
     public class Tag
     {
@@ -191,7 +199,7 @@ namespace EFCore
     public class PostTag
     {
         public int PostId { get; set; }
-        public Post post { get; set; } 
+        //public Post post { get; set; } 
         public string TagId { get; set; }
         public Tag Tag { get; set; }
 
@@ -240,4 +248,4 @@ namespace EFCore
 
         public Car Car { get; set; }
     }
-}
+
