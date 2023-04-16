@@ -13,19 +13,12 @@ namespace EFCore
 
           var _contex = new EFCoreContext();
 
-            var stocks = _contex.Stocks.Any();
-            var stocksIdGreaterThan100 = _contex.Stocks.Any(m=>m.Id>1000);
-            var AllStocksGreaterThan100 = _contex.Stocks.All(m=>m.Id>1000);
-            Console.WriteLine($"all: {AllStocksGreaterThan100}");
-            var posts = _contex.Posts.Any();
-            Console.WriteLine(stocksIdGreaterThan100);
-            Console.WriteLine(stocks);
-            Console.WriteLine(posts);
+           // var stocks = _contex.Stocks.Where(m=>m.Id>900).ToList().Append(new Stock { Id=1001,Name="Test"});
+            var stocks = _contex.Stocks.Where(m=>m.Id>900).ToList().Prepend(new Stock { Id=1001,Name="Test"});
 
-            //foreach(var stok in stoks)
-            //{
-            //    Console.WriteLine($"ID: {stok.Id} : {stok.Name}");
-            //}
+            foreach(var stock in stocks)
+               Console.WriteLine($"ID: {stock.Id} : {stock.Name}");
+            
 
         }
     }
